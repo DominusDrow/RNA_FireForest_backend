@@ -20,7 +20,7 @@ def predecir():
     clf = load('fireforestDetect.pkl')
     prediccion=clf.predict(medidas)
 
-    return prediccion
+    return str(prediccion)
 
 
 if __name__ == '__main__':
