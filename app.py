@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-import joblib
+from joblib import load
 import sklearn
 
 #curl -d "{\"Medidas\":[[1,2,3,4]]}" -H "Content-Type: application/json" -X POST http://127.0.0.1:5000/predecir
@@ -13,9 +13,13 @@ def home():
 
 @app.route("/predecir", methods=["POST"])
 def predecir():
+
+    clf = load('fireforestDetect.pkl')
+
     json=request.get_json(force=True)
+    
     medidas=json['Medidas']
-    clf=joblib.load('fireforestDetect.pkl')
+    
     prediccion=clf.predict(medidas)
     return 'Las medidas que diste corresponden a la clase {0}\n\n'.format(prediccion)
 
