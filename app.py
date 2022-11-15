@@ -15,14 +15,12 @@ def home():
 def predecir():
 
     json=request.get_json(force=True)
-    
-    clf = load('fireforestDetect.pkl')
-
     medidas=json['Medidas']
-    
+
+    clf = load('fireforestDetect.pkl')
     prediccion=clf.predict(medidas)
 
-    return 'Las medidas que diste corresponden a la clase {0}\n\n'.format(prediccion)
+    return prediccion
 
 
 if __name__ == '__main__':
