@@ -14,13 +14,14 @@ def home():
 @app.route("/predecir", methods=["POST"])
 def predecir():
 
-    clf = load('fireforestDetect.pkl')
-
     json=request.get_json(force=True)
     
+    clf = load('fireforestDetect.pkl')
+
     medidas=json['Medidas']
     
     prediccion=clf.predict(medidas)
+
     return 'Las medidas que diste corresponden a la clase {0}\n\n'.format(prediccion)
 
 
